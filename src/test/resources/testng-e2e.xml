@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <suite name="E2E Suite">
-
     <listeners>
-        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>    </listeners>
+        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
+        <listener class-name="com.qa.automation.framework.Listeners.AllureListener"/>
+
+    </listeners>
 
     <test name="E2E Tests">
 
