@@ -7,7 +7,6 @@ import com.qa.automation.framework.reports.ExtentManager;
 import com.qa.automation.framework.base.BaseTest;
 import org.openqa.selenium.WebDriver;
 import com.qa.automation.framework.utils.ScreenshotUtil;
-import org.testng.IRetryAnalyzer;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 

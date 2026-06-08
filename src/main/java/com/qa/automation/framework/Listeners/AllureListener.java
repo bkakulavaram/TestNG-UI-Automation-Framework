@@ -1,4 +1,4 @@
-package com.qa.automation.framework.listeners;
+package com.qa.automation.framework.Listeners;
 
 import io.qameta.allure.Attachment;
 import org.openqa.selenium.OutputType;
