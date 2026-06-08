@@ -2,7 +2,7 @@
 
 <suite name="E2E Suite">
     <listeners>
-        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
+<!--        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>-->
         <listener class-name="com.qa.automation.framework.Listeners.AllureListener"/>
     </listeners>
 

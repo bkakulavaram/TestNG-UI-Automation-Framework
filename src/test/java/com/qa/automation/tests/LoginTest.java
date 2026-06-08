@@ -20,7 +20,7 @@ public class LoginTest extends BaseTest {
         LoginPage loginPage = homePage.clickLogin();
         loginPage.login(email, password);
         boolean actual = loginPage.isLoginSuccessful();
-        Assert.assertEquals(actual, expectedResult);
+       // Assert.assertEquals(actual, expectedResult);
         Assert.fail("Force failure to test screenshot");
         }
     }
