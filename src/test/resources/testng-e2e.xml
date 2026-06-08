@@ -2,6 +2,8 @@
 
 <suite name="E2E Suite">
     <listeners>
+        <listener class-name="com.qa.automation.framework.Listeners.TestListener"/>
+
         <listener class-name="com.qa.automation.framework.Listeners.AllureListener"/>
 
     </listeners>
