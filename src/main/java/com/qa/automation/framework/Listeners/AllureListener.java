@@ -7,10 +7,8 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-import org.testng.annotations.Listeners;
 
 import static com.qa.automation.framework.drivers.DriverFactory.getDriver;
-@Listeners({AllureTestNg.class})
 public class AllureListener implements ITestListener {
 
     @Attachment(value = "Screenshot", type = "image/png")
