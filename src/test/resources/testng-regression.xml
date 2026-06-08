@@ -3,8 +3,8 @@
 <suite name="Regression Suite"  parallel="methods"  thread-count="2">
 
     <listeners>
-        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>    </listeners>
-
+    <listener class-name="com.qa.automation.framework.Listeners.AllureListener"/>
+    </listeners>
     <test name="Regression Tests">
         <packages>
             <package name="com.qa.automation.tests"/>
