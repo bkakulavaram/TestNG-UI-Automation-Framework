@@ -4,7 +4,7 @@
 
     <listeners>
 <!--        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>-->
-        <listener class-name="com.qa.automation.framework.Listeners.AllureListener"/>
+<!--        <listener class-name="com.qa.automation.framework.Listeners.AllureListener"/>-->
     </listeners>
     <test name="Regression Tests">
         <packages>
