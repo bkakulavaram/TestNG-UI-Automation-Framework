@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="Regression Suite"  parallel="methods"  thread-count="2">
+
+    <listeners>
+        <listener class-name="com.qa.automation.framework.Listeners.TestListener"/>
+    </listeners>
+
+    <test name="Regression Tests">
+        <packages>
+            <package name="com.qa.automation.tests"/>
+        </packages>
+
+        <groups>
+            <run>
+                <include name="regression"/>
+            </run>
+        </groups>
+
+    </test>
+
+</suite>

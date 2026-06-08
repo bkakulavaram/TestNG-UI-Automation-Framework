@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="Smoke Suite">
+
+    <listeners>
+        <listener class-name="com.qa.automation.framework.Listeners.TestListener"/>
+    </listeners>
+
+    <test name="Smoke Tests">
+
+        <packages>
+            <package name="com.qa.automation.tests"/>
+        </packages>
+
+        <groups>
+            <run>
+                <include name="smoke"/>
+            </run>
+        </groups>
+
+    </test>
+
+</suite>

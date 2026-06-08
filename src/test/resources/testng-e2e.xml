@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="E2E Suite">
+
+    <listeners>
+        <listener class-name="com.qa.automation.framework.Listeners.TestListener"/>
+    </listeners>
+
+    <test name="E2E Tests">
+
+        <groups>
+            <run>
+                <include name="e2e"/>
+            </run>
+        </groups>
+
+        <packages>
+            <package name="com.qa.automation.tests"/>
+        </packages>
+
+    </test>
+
+</suite>
