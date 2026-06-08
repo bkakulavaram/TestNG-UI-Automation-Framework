@@ -8,18 +8,22 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 
 import static com.qa.automation.framework.drivers.DriverFactory.getDriver;
+
 public class AllureListener implements ITestListener {
 
-    @Attachment(value = "Screenshot", type = "image/png")
-    public byte[] saveScreenshot(WebDriver driver) {
+    @Attachment(value = "Screenshot on Failure", type = "image/png")
+    public byte[] saveScreenshot() {
+        WebDriver driver = getDriver();
+
+        if (driver == null) {
+            return new byte[0];
+        }
+
         return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
-        WebDriver driver = getDriver();
-        if (driver != null) {
-            saveScreenshot(driver);
-        }
+        saveScreenshot();
     }
 }
