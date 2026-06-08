@@ -1,7 +1,6 @@
 package com.qa.automation.framework.Listeners;
 
 import io.qameta.allure.Attachment;
-import io.qameta.allure.testng.AllureTestNg;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
