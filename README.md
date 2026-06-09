@@ -204,6 +204,10 @@ Allure Report
 
 allure serve allure-results
 
+
+<img width="858" height="447" alt="image" src="https://github.com/user-attachments/assets/049c20d9-9a7b-4709-bc7f-51aaa79dc0db" />
+
+
 Screenshots
 
 /test-output/screenshots/
