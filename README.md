@@ -200,12 +200,25 @@ Extent Report
 
 /test-output/report.html
 
+
+
+
+<img width="1903" height="874" alt="image" src="https://github.com/user-attachments/assets/1ee6c180-1b80-4d0e-bfa0-be16b11b6f09" />
+
+
+
+
+
 Allure Report
 
 allure serve allure-results
 
 
+
+
 <img width="858" height="447" alt="image" src="https://github.com/user-attachments/assets/049c20d9-9a7b-4709-bc7f-51aaa79dc0db" />
+
+
 
 
 Screenshots
