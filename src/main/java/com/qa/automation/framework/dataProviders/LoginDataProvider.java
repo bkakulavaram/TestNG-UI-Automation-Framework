@@ -5,7 +5,7 @@ import org.testng.annotations.DataProvider;
 
 public class LoginDataProvider {
 
-    @DataProvider(name = "loginData",parallel = false)
+    @DataProvider(name = "loginData",parallel = true)
     public Object[][] loginData() {
 
         String path = System.getProperty(

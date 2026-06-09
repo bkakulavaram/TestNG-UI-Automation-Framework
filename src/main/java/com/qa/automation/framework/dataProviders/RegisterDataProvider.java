@@ -7,7 +7,7 @@ import java.io.File;
 
 public class RegisterDataProvider {
 
-    @DataProvider(name = "registerData", parallel = false)
+    @DataProvider(name = "registerData", parallel = true)
     public Object[][] registerData() {
 
         String path = System.getProperty(
