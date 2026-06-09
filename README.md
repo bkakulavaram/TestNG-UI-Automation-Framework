@@ -188,6 +188,7 @@ test-output/screenshots/
 ```text
 allure-results/
 ```
+<img width="858" height="447" alt="image" src="https://github.com/user-attachments/assets/7d1d7bb2-2f65-4b2a-828f-28971768358a" />
 
 ---
 
@@ -221,3 +222,5 @@ allure-results/
 Bhargavi Reddy
 
 Automation QA Engineer | SDET | Java | Selenium | TestNG | API Testing
+
+
