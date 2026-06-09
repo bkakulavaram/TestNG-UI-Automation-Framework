@@ -1,6 +1,6 @@
 package com.qa.automation.framework.base;
 
-import com.qa.automation.framework.drivers.DriverFactory;
+import com.qa.automation.framework.drivers.DriverService;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -14,20 +14,20 @@ public class BasePage {
     protected WebDriverWait wait;
 
     public BasePage() {
-        this.driver = DriverFactory.getDriver();
+        this.driver = DriverService.getDriver();
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    public void click(By locator) {
+    protected void click(By locator) {
         wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
     }
 
-    public void type(By locator, String value) {
+    protected void type(By locator, String value) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator))
                 .sendKeys(value);
     }
 
-    public boolean isDisplayed(By locator) {
+    protected boolean isDisplayed(By locator) {
         try {
             return wait.until(
                     ExpectedConditions.visibilityOfElementLocated(locator)
@@ -36,14 +36,10 @@ public class BasePage {
             return false;
         }
     }
-
     public String getText(By locator) {
+
         return wait.until(
                 ExpectedConditions.visibilityOfElementLocated(locator)
         ).getText();
-    }
-
-    public WebDriver getDriver() {
-        return driver;
     }
 }

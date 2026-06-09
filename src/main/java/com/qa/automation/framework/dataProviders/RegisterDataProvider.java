@@ -1,24 +1,26 @@
 package com.qa.automation.framework.dataProviders;
 
-import org.testng.annotations.DataProvider;
 import com.qa.automation.framework.utils.ExcelUtil;
+import org.testng.annotations.DataProvider;
 
+import java.io.File;
 
 public class RegisterDataProvider {
-    @DataProvider(name = "registerData")
+
+    @DataProvider(name = "registerData", parallel = false)
     public Object[][] registerData() {
 
-        return ExcelUtil.getTestData(
-                "src/test/resources/testdata/RegisterData.xlsx",
-                "Sheet1"
+        String path = System.getProperty(
+                "registerDataPath",
+                "src/test/resources/testdata/RegisterData.xlsx"
         );
+
+        File file = new File(path);
+
+        if (!file.exists()) {
+            throw new RuntimeException("Test data file not found: " + path);
+        }
+
+        return ExcelUtil.getTestData(path, "Sheet1");
     }
-//    @DataProvider(name = "registerData")
-//    public Object[][] registerData() {
-//
-//        return new Object[][] {
-//                {"Male", "John", "Doe"},
-//                {"Female", "Jane", "Smith"}
-//        };
-//    }
 }

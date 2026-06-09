@@ -1,32 +1,44 @@
 package com.qa.automation.framework.config;
 
 import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class ConfigReader {
 
-    private static ConfigReader instance;
-    private Properties properties;
+    private static volatile ConfigReader instance;
+    private final Properties properties = new Properties();
 
     private ConfigReader() {
-        properties = new Properties();
 
         String env = System.getProperty("env", "qa");
 
-        String path = "src/test/resources/" + env + ".properties";
+        String fileName = env + ".properties";
 
-        try (FileInputStream fis = new FileInputStream(path)) {
+        try (InputStream fis =
+                     getClass().getClassLoader().getResourceAsStream(fileName)) {
+
+            if (fis == null) {
+                throw new RuntimeException("Config file not found: " + fileName);
+            }
+
             properties.load(fis);
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to load config: " + path, e);
+
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to load config", e);
         }
     }
 
     public static ConfigReader getInstance() {
+
         if (instance == null) {
-            instance = new ConfigReader();
+            synchronized (ConfigReader.class) {
+                if (instance == null) {
+                    instance = new ConfigReader();
+                }
+            }
         }
+
         return instance;
     }
 
@@ -36,5 +48,9 @@ public class ConfigReader {
 
     public String getBrowser() {
         return properties.getProperty("browser");
+    }
+
+    public String getGridUrl() {
+        return properties.getProperty("gridUrl", "http://localhost:4444/wd/hub");
     }
 }

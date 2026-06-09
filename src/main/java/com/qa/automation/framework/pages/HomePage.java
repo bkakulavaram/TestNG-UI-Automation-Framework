@@ -1,30 +1,29 @@
 package com.qa.automation.framework.pages;
 
 import com.qa.automation.framework.base.BasePage;
-import com.qa.automation.framework.drivers.DriverFactory;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
 public class HomePage extends BasePage {
-    By loginPage= By.linkText("Log in");
-    By registerPage= By.linkText("Register");
-    By logoutLink = By.linkText("Log out");
 
+    private final By loginLink = By.linkText("Log in");
+    private final By registerLink = By.linkText("Register");
+    private final By logoutLink = By.linkText("Log out");
 
-    public LoginPage clickLogin(){
-        click(loginPage);
+    public LoginPage clickLogin() {
+        click(loginLink);
         return new LoginPage();
     }
 
-    public RegisterPage clickRegister(){
-        click(registerPage);
+    public RegisterPage clickRegister() {
+        click(registerLink);
         return new RegisterPage();
     }
+
     public boolean isUserLoggedIn() {
-        return driver.findElement(logoutLink).isDisplayed();
+        return isDisplayed(logoutLink);
     }
+
     public void logout() {
         click(logoutLink);
     }
-
 }

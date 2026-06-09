@@ -2,47 +2,59 @@ package com.qa.automation.framework.pages;
 
 import com.qa.automation.framework.base.BasePage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
 public class RegisterPage extends BasePage {
 
+    private final By maleRadio = By.id("gender-male");
+    private final By femaleRadio = By.id("gender-female");
 
+    private final By firstName = By.id("FirstName");
+    private final By lastName = By.id("LastName");
 
-    private By maleRadio = By.id("gender-male");
-    private By femaleRadio = By.id("gender-female");
-    private By firstName = By.id("FirstName");
-    private By lastName = By.id("LastName");
-    private By email = By.id("Email");
-    private By password = By.id("Password");
-    private By confirmPassword = By.id("ConfirmPassword");
-    private By registerBtn = By.id("register-button");
-    private By registrationSuccessMessage =
+    private final By email = By.id("Email");
+    private final By password = By.id("Password");
+    private final By confirmPassword = By.id("ConfirmPassword");
+
+    private final By registerButton =
+            By.id("register-button");
+
+    private final By registrationSuccessMessage =
             By.className("result");
 
-    public void selectGender(String gender) {
+    public RegisterPage registerUser(
+            String gender,
+            String firstNameValue,
+            String lastNameValue,
+            String emailValue,
+            String passwordValue) {
 
-        if (gender.equalsIgnoreCase("Male")) {
+        selectGender(gender);
+
+        type(firstName, firstNameValue);
+        type(lastName, lastNameValue);
+        type(email, emailValue);
+        type(password, passwordValue);
+        type(confirmPassword, passwordValue);
+
+        click(registerButton);
+
+        return this;
+    }
+
+    private void selectGender(String gender) {
+
+        if ("male".equalsIgnoreCase(gender)) {
             click(maleRadio);
         } else {
             click(femaleRadio);
         }
     }
 
-    public void registerUser(String gender, String fName, String lName, String userEmail, String pwd) {
-
-        selectGender(gender);
-        type(firstName, fName);
-        type(lastName, lName);
-        type(email, userEmail);
-        type(password, pwd);
-        type(confirmPassword, pwd);
-        click(registerBtn);
-
+    public boolean isRegistrationSuccessful() {
+        return isDisplayed(registrationSuccessMessage);
     }
 
     public String getRegistrationMessage() {
-        return driver.findElement(registrationSuccessMessage)
-                .getText();
+        return getText(registrationSuccessMessage);
     }
-
 }

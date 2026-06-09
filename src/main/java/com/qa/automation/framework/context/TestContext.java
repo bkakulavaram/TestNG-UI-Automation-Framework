@@ -2,22 +2,24 @@ package com.qa.automation.framework.context;
 
 public class TestContext {
 
-    private static String email;
-    private static String password;
+    private String email;
+    private String password;
 
-    public static String getEmail() {
+    public String getEmail() {
         return email;
     }
 
-    public static void setEmail(String email) {
-        TestContext.email = email;
+    public TestContext setEmail(String email) {
+        this.email = email;
+        return this;
     }
 
-    public static String getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public static void setPassword(String password) {
-        TestContext.password = password;
+    public TestContext setPassword(String password) {
+        this.password = password;
+        return this;
     }
 }

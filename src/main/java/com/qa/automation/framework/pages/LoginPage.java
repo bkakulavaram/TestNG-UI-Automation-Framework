@@ -2,31 +2,30 @@ package com.qa.automation.framework.pages;
 
 import com.qa.automation.framework.base.BasePage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
 public class LoginPage extends BasePage {
 
-    By emailField=By.id("Email");
-    By passwordField=By.id("Password");
-    By loginButton=By.xpath("/html/body/div[4]/div[1]/div[4]/div[2]/div/div[2]/div[1]/div[2]/div[2]/form/div[5]/input");
-    By errorMsg;
-    By logout=By.linkText("Log out");
+    private final By emailField = By.id("Email");
+    private final By passwordField = By.id("Password");
+    private final By loginButton = By.cssSelector("input[value='Log in']");
+    private final By errorMessage =
+            By.cssSelector(".validation-summary-errors");
+    private final By logoutLink = By.linkText("Log out");
 
+    public LoginPage login(String email, String password) {
 
-
-    public void login(String email, String password){
-        type(emailField,email);
-        type(passwordField,password);
+        type(emailField, email);
+        type(passwordField, password);
         click(loginButton);
+
+        return this;
     }
 
     public boolean isLoginSuccessful() {
-        return isDisplayed(logout);
+        return isDisplayed(logoutLink);
     }
 
     public boolean isLoginErrorDisplayed() {
-
-        return isDisplayed(errorMsg);
+        return isDisplayed(errorMessage);
     }
-
 }

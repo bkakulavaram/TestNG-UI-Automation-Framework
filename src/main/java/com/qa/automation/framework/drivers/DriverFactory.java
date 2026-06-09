@@ -1,6 +1,5 @@
 package com.qa.automation.framework.drivers;
 
-import com.qa.automation.framework.config.ConfigReader;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -9,56 +8,24 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class DriverFactory {
 
-    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
-
-    public static WebDriver getDriver() {
-        return driver.get();
-    }
-
-    public static void setDriver(WebDriver webDriver) {
-        driver.set(webDriver);
-    }
-
-    public static void unload() {
-        driver.remove();
-    }
-
-    public WebDriver initDriver() {
-        String browser = System.getProperty("browser",
-                ConfigReader.getInstance().getBrowser());
-
-        browser = browser.toLowerCase().trim();
-
-        System.out.println("Browser selected: " + browser);
-
-        // 🔥 PRIORITY FIX: system property > config file
-//        String browser = System.getProperty("browser",
-//                ConfigReader.getInstance().getBrowser());
-
-        WebDriver driverInstance;
+    public static WebDriver createDriver(String browser) {
 
         switch (browser.toLowerCase()) {
 
             case "chrome":
                 WebDriverManager.chromedriver().setup();
-                driverInstance = new ChromeDriver();
-                break;
+                return new ChromeDriver();
 
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
-                driverInstance = new FirefoxDriver();
-                break;
+                return new FirefoxDriver();
 
             case "edge":
                 WebDriverManager.edgedriver().setup();
-                driverInstance = new EdgeDriver();
-                break;
+                return new EdgeDriver();
 
             default:
-                throw new RuntimeException("Invalid Browser: " + browser);
+                throw new RuntimeException("Unsupported browser: " + browser);
         }
-
-        driverInstance.manage().window().maximize();
-        return driverInstance;
     }
 }

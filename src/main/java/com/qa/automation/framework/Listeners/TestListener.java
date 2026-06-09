@@ -1,44 +1,47 @@
 package com.qa.automation.framework.Listeners;
 
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.Status;
-import com.qa.automation.framework.drivers.DriverFactory;
+import com.aventstack.extentreports.*;
+import com.qa.automation.framework.drivers.DriverManager;
 import com.qa.automation.framework.reports.ExtentManager;
-import com.qa.automation.framework.base.BaseTest;
-import org.openqa.selenium.WebDriver;
 import com.qa.automation.framework.utils.ScreenshotUtil;
+import org.openqa.selenium.WebDriver;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
 public class TestListener implements ITestListener {
 
-    private static ExtentTest test;
+    private static final ThreadLocal<ExtentTest> extentTest = new ThreadLocal<>();
 
     @Override
     public void onTestStart(ITestResult result) {
-        test = ExtentManager.getExtentReports()
+
+        ExtentTest test = ExtentManager.getExtentReports()
                 .createTest(result.getName());
+
+        extentTest.set(test);
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        test.log(Status.PASS, "Test Passed");
+        extentTest.get().log(Status.PASS, "Test Passed");
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
 
-        Object testClass = result.getInstance();
-        WebDriver driver =
-                DriverFactory.getDriver();
-        if (driver != null) {
-            String screenshotPath =
-                    ScreenshotUtil.takeScreenshot(driver, result.getName());
+        ExtentTest test = extentTest.get();
 
-            test.log(Status.FAIL, result.getThrowable());
-            test.addScreenCaptureFromPath(screenshotPath);
-        } else {
-            test.log(Status.FAIL, "Driver was null — screenshot skipped");
+        WebDriver driver = DriverManager.getDriver();
+
+        test.log(Status.FAIL, result.getThrowable());
+
+        if (driver != null) {
+            String path = ScreenshotUtil.takeScreenshot(driver, result.getName());
+            try {
+                test.addScreenCaptureFromPath(path);
+            } catch (Exception e) {
+                test.log(Status.WARNING, "Screenshot attach failed");
+            }
         }
     }
 
