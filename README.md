@@ -1,226 +1,251 @@
-# UI Automation Framework
+# 🚀 UI Automation Framework 
 
-A scalable UI Automation Framework built using Java, Selenium WebDriver, TestNG, Maven, Page Object Model (POM), Data-Driven Testing, Selenium Grid, Extent Reports, and Allure Reporting.
+A **scalable, production-ready UI Automation Framework** built using **Java + Selenium WebDriver + TestNG + Maven**, designed with real-world **enterprise SDET architecture principles**.
 
-## Tech Stack
-
-* Java 17
-* Selenium WebDriver 4
-* TestNG
-* Maven
-* Page Object Model (POM)
-* Apache POI (Excel Data Provider)
-* Selenium Grid
-* Extent Reports
-* Allure Reports
-* WebDriverManager
+This project demonstrates **clean automation design, parallel execution, distributed testing readiness, CI/CD compatibility, and professional reporting standards (Extent + Allure)**.
 
 ---
 
-## Framework Features
+## 🧠 What This Project Demonstrates 
 
-### Test Design
-
-* Page Object Model (POM)
-* Reusable BasePage and BaseTest classes
-* Thread-safe WebDriver management using ThreadLocal
-* Environment-based configuration
-* Parallel execution support
-* Retry mechanism for flaky tests
-
-### Data Management
-
-* Excel-based test data
-* Externalized configuration files
-* Dynamic test data generation
-
-### Reporting
-
-* Extent Reports
-* Allure Reports
-* Automatic screenshot capture on failure
-* Detailed execution logs
-
-### Execution
-
-* Local execution
-* Cross-browser execution
-* Selenium Grid execution
-* Smoke, Regression and E2E suites
-* Maven profile support
+✔ Scalable automation framework architecture  
+✔ Thread-safe execution using `ThreadLocal WebDriver`  
+✔ Selenium Grid support for distributed execution  
+✔ Page Object Model (POM) with reusable base layers  
+✔ Data-driven testing using Apache POI (Excel integration)  
+✔ Retry mechanism for flaky test handling  
+✔ Parallel execution support (TestNG)  
+✔ Environment-driven configuration (QA/Stage/Prod ready)  
+✔ Dual reporting: Extent Reports + Allure Reports  
+✔ Screenshot capture on failure (auto-attached to reports)  
+✔ CI/CD-ready Maven structure  
+✔ Clean separation of concerns (Framework / Tests / Utils / Drivers)  
 
 ---
 
-## Project Structure
+## 🏗️ Tech Stack
 
-```text
+- Java 17+
+- Selenium WebDriver 4
+- TestNG
+- Maven
+- Apache POI (Excel Data Provider)
+- WebDriverManager
+- Selenium Grid
+- Extent Reports
+- Allure Reports
+- Git / GitHub (CI/CD Ready)
+
+
+## 📁 Framework Architecture
+
+
+---
 src
-├── main
-│   └── java
-│       └── com.qa.automation.framework
-│           ├── base
-│           ├── config
-│           ├── context
-│           ├── drivers
-│           ├── pages
-│           ├── reports
-│           └── utils
+├── main/java/com/qa/automation/framework
+
+│ ├── base → BasePage, BaseTest
+
+│ ├── config → ConfigReader (environment-based config)
+
+│ ├── drivers → DriverFactory, DriverManager, GridFactory
+
+│ ├── pages → Page Object Model classes
+
+│ ├── listeners → TestNG & Extent listeners
+
+│ ├── reports → Extent Report manager
+
+│ └── utils → Utilities (Excel, Screenshot, Retry, Allure)
+
 │
-└── test
-    └── java
-        └── com.qa.automation.tests
-            ├── LoginTest
-            ├── RegisterTest
-            └── E2ETest
-```
+
+└── test/java/com/qa/automation/tests
+
+├── LoginTest
+
+├── RegisterTest
+
+└── E2ETest
+
 
 ---
 
-## Test Scenarios
+## ⚙️ Core Design Principles
 
-### Login Tests
+### 🔹 Thread-Safe Execution
+- Uses `ThreadLocal<WebDriver>` for isolated sessions
+- Enables parallel execution without session conflicts
 
-* Valid Login
-* Invalid Login
-* Login Validation
-
-### Registration Tests
-
-* User Registration
-* Dynamic Email Generation
-* Registration Success Validation
-
-### End-to-End Tests
-
-* Register User
-* Logout
-* Login with Newly Created User
-* Verify Successful Authentication
-
----
-
-## Configuration
-
-### QA Environment
-
-`src/test/resources/qa.properties`
-
-```properties
-baseUrl=https://demowebshop.tricentis.com
-browser=chrome
-gridUrl=http://localhost:4444/wd/hub
-```
-
----
-
-## Maven Commands
-
-### Run All Tests
-
+### 🔹 Environment-Based Execution
 ```bash
+-Denv=qa
+```
+Supports:
+
+QA
+
+Staging
+
+Production
+
+🔹 Grid + Local Execution
+
+Local browser execution (Chrome / Firefox / Edge)
+
+Selenium Grid support (distributed execution ready)
+
+🔹 Page Object Model (POM)
+
+Clean separation of UI locators and actions
+
+Reusable page methods
+
+Reduces duplication and improves maintainability
+
+🔹 Data-Driven Testing
+
+Excel-based test data using Apache POI
+
+Externalized test datasets
+
+Supports multiple scenarios per test
+
+🔹 Retry Mechanism
+
+Automatic retry for flaky tests (TestNG RetryAnalyzer)
+
+Improves CI stability
+
+🔹 Reporting Strategy
+
+
+📊 Extent Reports
+
+Step-level execution logs
+Screenshots on failure
+HTML dashboard (/test-output/report.html)
+
+📊 Allure Reports
+
+CI/CD-friendly reporting
+Screenshot attachments
+Execution history tracking
+
+
+
+🧪 Test Coverage
+
+
+
+🔐 Login Module
+Valid login validation
+Invalid login validation
+Assertion-based verification
+
+
+🧾 Registration Module
+Dynamic user registration
+Data-driven input support
+Success message validation
+
+
+🔁 End-to-End Flow
+User registration
+Logout
+Login with created user
+Full workflow validation
+
+
+
+
+⚙️ Maven Execution Commands
+
+
+
+
+▶ Run all tests
+
 mvn clean test
-```
 
-### Run QA Environment
+▶ Run QA environment
 
-```bash
 mvn clean test -Denv=qa
-```
 
-### Run Smoke Suite
+▶ Run Smoke tests
 
-```bash
 mvn clean test -Dgroups=smoke
-```
 
-### Run Regression Suite
+▶ Run Regression tests
 
-```bash
 mvn clean test -Dgroups=regression
-```
 
-### Run E2E Suite
+▶ Run E2E tests
 
-```bash
 mvn clean test -Dgroups=e2e
-```
 
-### Run On Selenium Grid
+▶ Run with Selenium Grid
 
-```bash
 mvn clean test -Dgrid=true
-```
 
----
 
-## Generate Allure Report
 
-Execute tests:
 
-```bash
-mvn clean test
-```
+📊 Reports
 
-Generate report:
 
-```bash
+
+
+Extent Report
+
+/test-output/report.html
+
+Allure Report
+
 allure serve allure-results
-```
 
----
+Screenshots
 
-## Reporting
+/test-output/screenshots/
 
-### Extent Report
 
-```text
-test-output/report.html
-```
 
-### Screenshots
 
-```text
-test-output/screenshots/
-```
+🧱 CI/CD Ready Design
 
-### Allure Results
 
-```text
-allure-results/
-```
-<img width="858" height="447" alt="image" src="https://github.com/user-attachments/assets/7d1d7bb2-2f65-4b2a-828f-28971768358a" />
 
----
 
-## Design Highlights
+This framework is structured for integration with:
 
-* Thread-safe WebDriver architecture
-* Parallel execution ready
-* Selenium Grid support
-* Environment-driven execution
-* Data-driven framework design
-* Reporting integration
-* Reusable page objects
-* Maintainable and scalable structure
+Jenkins Pipelines
+GitHub Actions
+Dockerized Selenium Grid
+Kubernetes test execution
+Cloud execution (BrowserStack / LambdaTest ready)
 
----
 
-## Future Enhancements
 
-* REST Assured API automation integration
-* Jenkins CI/CD pipeline
-* Dockerized Selenium Grid
-* GitHub Actions execution
-* Database validation layer
-* Contract testing
-* Cloud execution (BrowserStack / LambdaTest)
+🔮 Future Enhancements
 
----
 
-## Author
+
+REST Assured API automation integration
+Dockerized Selenium Grid setup
+GitHub Actions CI pipeline
+Kubernetes distributed execution
+Database validation layer
+Contract testing integration
+Central logging + observability (ELK/Prometheus)
+Cloud execution scaling layer
+
+
+
+👨‍💻 Author
 
 Bhargavi Reddy
 
-Automation QA Engineer | SDET | Java | Selenium | TestNG | API Testing
+SDET / QA Automation Engineer
 
+Skills: Java • Selenium • TestNG • API Testing • CI/CD • Automation Framework Design
 
